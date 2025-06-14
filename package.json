@@ -1,9 +1,0 @@
-{
-  "name": "dr1v3-site",
-  "version": "1.0.0",
-  "dependencies": {
-    "@supabase/supabase-js": "^2.38.0",
-    "formidable": "^3.5.1",
-    "uuid": "^9.0.1"
-  }
-}
