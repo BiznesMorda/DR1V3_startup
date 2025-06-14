@@ -1,1 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Your Vehicle - DR1V3</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --success-gradient: linear-gradient(135deg, #30d158 0%, #32d74b 100%);
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --text-primary: #ffffff;
+            --text-secondary: rgba(255, 255, 255, 0.8);
+            --text-muted: rgba(255, 255, 255, 0.6);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: #0a0a0a;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.2) 0%, transparent 50%);
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .logo {
+            font-size: 36px;
+            font-weight: 900;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 16px;
+        }
+
+        .success-badge {
+            display: inline-flex;
+            align-items: center;
+            background: var(--success-gradient);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            box-shadow: 0 6px 25px rgba(48, 209, 88, 0.4);
+        }
+
+        .form-title {
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, #ffffff 0%, #667eea 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .form-subtitle {
+            color: var(--text-secondary);
+            font-size: 16px;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .form-container {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .form-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #ff3b30, #ff6b35, #ffcc02, #30d158, #007aff, #af52de);
+        }
+
+        .form-section {
+            margin-bottom: 40px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .section-number {
+            width: 32px;
+            height: 32px;
+            background: var(--primary-gradient);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 16px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+
+        .required {
+            color: #ff3b30;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-primary);
+            font-size: 14px;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: rgba(102, 126, 234, 0.5);
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .form-input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .file-upload-area {
+            border: 2px dashed rgba(255, 255, 255, 0.3);
+            border-radius: 16px;
+            padding: 32px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.03);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .file-upload-area:hover {
+            border-color: rgba(102, 126, 234, 0.5);
+            background: rgba(102, 126, 234, 0.05);
+        }
+
+        .file-upload-area.dragover {
+            border-color: #30d158;
+            background: rgba(48, 209, 88, 0.1);
+        }
+
+        .upload-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+            opacity: 0.6;
+        }
+
+        .upload-text {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+
+        .upload-subtext {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+
+        .file-input {
+            position: absolute;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .upload-button {
+            background: var(--accent-gradient);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .upload-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(79, 172, 254, 0.4);
+        }
+
+        .file-list {
+            margin-top: 16px;
+        }
+
+        .file-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            margin-bottom: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .file-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .file-icon {
+            color: #30d158;
+            font-size: 16px;
+        }
+
+        .file-name {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .remove-file {
+            background: rgba(255, 59, 48, 0.2);
+            color: #ff3b30;
+            border: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .remove-file:hover {
+            background: rgba(255, 59, 48, 0.3);
+        }
+
+        .photo-guide {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .guide-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .guide-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .guide-list li {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .guide-list li::before {
+            content: '✓';
+            color: #30d158;
+            font-weight: 800;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: rgba(48, 209, 88, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            flex-shrink: 0;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--accent-gradient);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .submit-button {
+            width: 100%;
+            background: var(--primary-gradient);
+            color: white;
+            border: none;
+            padding: 18px 32px;
+            border-radius: 14px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 25px rgba(102, 126, 234, 0.4);
+            margin-top: 24px;
+        }
+
+        .submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(102, 126, 234, 0.6);
+        }
+
+        .submit-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .checkbox {
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 4px;
+            background: transparent;
+            cursor: pointer;
+            position: relative;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .checkbox:checked {
+            background: var(--primary-gradient);
+            border-color: transparent;
+        }
+
+        .checkbox:checked::after {
+            content: '✓';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        .checkbox-label {
+            font-size: 14px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            line-height: 1.5;
+        }
+
+        .info-box {
+            background: rgba(0, 122, 255, 0.1);
+            border: 1px solid rgba(0, 122, 255, 0.3);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 24px;
+        }
+
+        .info-box-title {
+            color: #007aff;
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .info-box-text {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 16px;
+            }
+
+            .form-container {
+                padding: 24px;
+            }
+
+            .form-title {
+                font-size: 28px;
+            }
+
+            .file-upload-area {
+                padding: 24px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">DR1V3</div>
+            <div class="success-badge">✅ Payment Confirmed</div>
+            <h1 class="form-title">Upload Your Vehicle</h1>
+            <p class="form-subtitle">
+                Welcome! Your payment has been processed successfully. Please upload your vehicle photos and verification documents to begin creating your 3D NFT.
+            </p>
+        </div>
+
+        <form class="form-container" id="uploadForm">
+            <!-- Section 1: Basic Information -->
+            <div class="form-section">
+                <div class="section-header">
+                    <div class="section-number">1</div>
+                    <h2 class="section-title">Basic Information</h2>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="email">Email Address <span class="required">*</span></label>
+                    <input type="email" id="email" name="email" class="form-input" placeholder="your@email.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="orderNumber">Order Number <span class="required">*</span></label>
+                    <input type="text" id="orderNumber" name="orderNumber" class="form-input" placeholder="DR1V3-XXXX-XXXX" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="fullName">Full Name <span class="required">*</span></label>
+                    <input type="text" id="fullName" name="fullName" class="form-input" placeholder="John Doe" required>
+                </div>
+            </div>
+
+            <!-- Section 2: Vehicle Information -->
+            <div class="form-section">
+                <div class="section-header">
+                    <div class="section-number">2</div>
+                    <h2 class="section-title">Vehicle Information</h2>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="vin">Vehicle VIN <span class="required">*</span></label>
+                    <input type="text" id="vin" name="vin" class="form-input" placeholder="1HGBH41JXMN109186" required maxlength="17">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="make">Make <span class="required">*</span></label>
+                    <input type="text" id="make" name="make" class="form-input" placeholder="Ford" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="model">Model <span class="required">*</span></label>
+                    <input type="text" id="model" name="model" class="form-input" placeholder="Mustang" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="year">Year <span class="required">*</span></label>
+                    <input type="number" id="year" name="year" class="form-input" placeholder="2023" required min="1900" max="2025">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="color">Color</label>
+                    <input type="text" id="color" name="color" class="form-input" placeholder="Red">
+                </div>
+            </div>
+
+            <!-- Section 3: Vehicle Photos -->
+            <div class="form-section">
+                <div class="section-header">
+                    <div class="section-number">3</div>
+                    <h2 class="section-title">Vehicle Photos</h2>
+                </div>
+
+                <div class="info-box">
+                    <div class="info-box-title">
+                        📸 Photo Requirements
+                    </div>
+                    <div class="info-box-text">
+                        Upload 40-60 high-quality photos of your vehicle from all angles. Good lighting and clear images are essential for the best 3D model quality.
+                    </div>
+                </div>
+
+                <div class="file-upload-area" id="photoUploadArea">
+                    <input type="file" id="photoUpload" name="photos" class="file-input" multiple accept="image/*">
+                    <div class="upload-icon">📷</div>
+                    <div class="upload-text">Drag & drop photos here</div>
+                    <div class="upload-subtext">or click to browse (40-60 photos recommended)</div>
+                    <button type="button" class="upload-button">Choose Photos</button>
+                </div>
+
+                <div class="file-list" id="photoList"></div>
+
+                <div class="photo-guide">
+                    <div class="guide-title">
+                        💡 Photo Guide
+                    </div>
+                    <ul class="guide-list">
+                        <li>Take photos from every angle (front, back, sides, corners)</li>
+                        <li>Include interior shots (dashboard, seats, steering wheel)</li>
+                        <li>Capture close-ups of distinctive features</li>
+                        <li>Ensure good lighting (daylight preferred)</li>
+                        <li>Avoid reflections and shadows when possible</li>
+                        <li>Include engine bay and trunk if accessible</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Section 4: Ownership Verification -->
+            <div class="form-section">
+                <div class="section-header">
+                    <div class="section-number">4</div>
+                    <h2 class="section-title">Ownership Verification</h2>
+                </div>
+
+                <div class="info-box">
+                    <div class="info-box-title">
+                        🔐 Verification Required
+                    </div>
+                    <div class="info-box-text">
+                        Please upload clear photos of your vehicle registration, title, or other ownership documents. Personal information will be kept confidential.
+                    </div>
+                </div>
+
+                <div class="file-upload-area" id="documentUploadArea">
+                    <input type="file" id="documentUpload" name="documents" class="file-input" multiple accept="image/*,.pdf">
+                    <div class="upload-icon">📄</div>
+                    <div class="upload-text">Upload ownership documents</div>
+                    <div class="upload-subtext">Registration, title, or insurance documents</div>
+                    <button type="button" class="upload-button">Choose Documents</button>
+                </div>
+
+                <div class="file-list" id="documentList"></div>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+
+            <!-- Consent and Submit -->
+            <div class="checkbox-group">
+                <input type="checkbox" id="consent" name="consent" class="checkbox" required>
+                <label for="consent" class="checkbox-label">
+                    I confirm that I am the legal owner of this vehicle and consent to the creation of a digital NFT based on the provided information and photos. I understand that the VIN will be hashed for privacy protection.
+                </label>
+            </div>
+
+            <button type="submit" class="submit-button" id="submitButton" disabled>
+                Submit & Start 3D Creation →
+            </button>
+        </form>
+    </div>
+
+    <script>
+        // File upload functionality
+        let photoFiles = [];
+        let documentFiles = [];
+
+        function setupFileUpload(uploadAreaId, inputId, listId, filesArray) {
+            const uploadArea = document.getElementById(uploadAreaId);
+            const fileInput = document.getElementById(inputId);
+            const fileList = document.getElementById(listId);
+
+            uploadArea.addEventListener('click', () => fileInput.click());
+            uploadArea.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                uploadArea.classList.add('dragover');
+            });
+            uploadArea.addEventListener('dragleave', () => {
+                uploadArea.classList.remove('dragover');
+            });
+            uploadArea.addEventListener('drop', (e) => {
+                e.preventDefault();
+                uploadArea.classList.remove('dragover');
+                handleFiles(e.dataTransfer.files, filesArray, listId);
+            });
+
+            fileInput.addEventListener('change', (e) => {
+                handleFiles(e.target.files, filesArray, listId);
+            });
+        }
+
+        function handleFiles(files, filesArray, listId) {
+            for (let file of files) {
+                if (!filesArray.find(f => f.name === file.name)) {
+                    filesArray.push(file);
+                }
+            }
+            displayFiles(filesArray, listId);
+            updateProgress();
+        }
+
+        function displayFiles(filesArray, listId) {
+            const fileList = document.getElementById(listId);
+            fileList.innerHTML = '';
+
+            filesArray.forEach((file, index) => {
+                const fileItem = document.createElement('div');
+                fileItem.className = 'file-item';
+                fileItem.innerHTML = `
+                    <div class="file-info">
+                        <span class="file-icon">📎</span>
+                        <span class="file-name">${file.name}</span>
+                    </div>
+                    <button type="button" class="remove-file" onclick="removeFile(${index}, '${listId}')">×</button>
+                `;
+                fileList.appendChild(fileItem);
+            });
+        }
+
+        function removeFile(index, listId) {
+            if (listId === 'photoList') {
+                photoFiles.splice(index, 1);
+                displayFiles(photoFiles, 'photoList');
+            } else {
+                documentFiles.splice(index, 1);
+                displayFiles(documentFiles, 'documentList');
+            }
+            updateProgress();
+        }
+
+        function updateProgress() {
+            const totalFields = 7; // Basic info fields + requirements
+            let completed = 0;
+
+            // Check basic form fields
+            const requiredFields = ['email', 'orderNumber', 'fullName', 'vin', 'make', 'model', 'year'];
+            requiredFields.forEach(field => {
+                if (document.getElementById(field).value.trim()) {
+                    completed++;
+                }
+            });
+
+            // Check files
+            if (photoFiles.length >= 20) completed++;
+            if (documentFiles.length >= 1) completed++;
+            if (document.getElementById('consent').checked) completed++;
+
+            const percentage = Math.min((completed / (totalFields + 3)) * 100, 100);
+            document.getElementById('progressFill').style.width = percentage + '%';
+
+            // Enable submit button when ready
+            const submitButton = document.getElementById('submitButton');
+            const allFieldsFilled = requiredFields.every(field => 
+                document.getElementById(field).value.trim()
+            );
+            const hasPhotos = photoFiles.length >= 20;
+            const hasDocuments = documentFiles.length >= 1;
+            const hasConsent = document.getElementById('consent').checked;
+
+            submitButton.disabled = !(allFieldsFilled && hasPhotos && hasDocuments && hasConsent);
+        }
+
+        // Initialize file uploads
+        setupFileUpload('photoUploadArea', 'photoUpload', 'photoList', photoFiles);
+        setupFileUpload('documentUploadArea', 'documentUpload', 'documentList', documentFiles);
+
+        // Form validation
+        document.querySelectorAll('input').forEach(input => {
+            input.addEventListener('input', updateProgress);
+            input.addEventListener('change', updateProgress);
+        });
+
+        // Form submission
+        document.getElementById('uploadForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData();
+            
+            // Add form fields
+            const formFields = ['email', 'orderNumber', 'fullName', 'vin', 'make', 'model', 'year', 'color'];
+            formFields.forEach(field => {
+                formData.append(field, document.getElementById(field).value);
+            });
+
+            // Add files
+            photoFiles.forEach((file, index) => {
+                formData.append(`photo_${index}`, file);
+            });
+            documentFiles.forEach((file, index) => {
+                formData.append(`document_${index}`, file);
+            });
+
+            // Show loading state
+            const submitButton = document.getElementById('submitButton');
+            submitButton.innerHTML = 'Uploading... ⏳';
+            submitButton.disabled = true;
+
+            // Here you would normally submit to your backend
+            // For demo purposes, we'll simulate success
+            setTimeout(() => {
+                alert('✅ Upload successful! You will receive an email confirmation and your 3D NFT will be ready in 5-7 business days.');
+                submitButton.innerHTML = 'Submitted Successfully ✅';
+            }, 2000);
+        });
+
+        // Initialize progress
+        updateProgress();
+    </script>
+</body>
+</html>
