@@ -970,6 +970,312 @@
             <p class="urgency-text">⚡ <strong>Launch Week Only:</strong> Price returns to $497 after first 50 customers</p>
         </div>
     </section>
+    <!-- Payment Success Message Section -->
+<section class="payment-success" id="payment-success" style="display: none;">
+    <div class="container">
+        <div class="success-card">
+            <div class="success-icon">✅</div>
+            <h2 class="success-title">Payment Successful!</h2>
+            <p class="success-subtitle">Thank you for your purchase. Here's what you need to do next:</p>
+            
+            <div class="instructions-card">
+                <h3>📧 Send us your vehicle photos</h3>
+                <p class="email-instruction">
+                    Please email your photos to: <strong>photos@dr1v3.com</strong>
+                </p>
+                
+                <div class="photo-requirements">
+                    <h4>Photo Requirements:</h4>
+                    <ul class="requirements-list">
+                        <li>📸 40-60 high-quality photos</li>
+                        <li>🔄 360° coverage - all angles</li>
+                        <li>☀️ Good lighting (natural daylight preferred)</li>
+                        <li>📏 Include close-ups of details</li>
+                        <li>🚗 Interior and exterior shots</li>
+                        <li>📱 Minimum 12MP resolution</li>
+                    </ul>
+                </div>
+                
+                <div class="additional-info">
+                    <h4>Include this information:</h4>
+                    <ul class="info-list">
+                        <li>🆔 Your order confirmation number</li>
+                        <li>🚗 Vehicle make, model, and year</li>
+                        <li>🔢 VIN number (for verification)</li>
+                        <li>📧 Your contact email</li>
+                        <li>🎨 Any special customization requests</li>
+                    </ul>
+                </div>
+                
+                <div class="timeline">
+                    <h4>⏰ What happens next:</h4>
+                    <div class="timeline-steps">
+                        <div class="timeline-step">
+                            <span class="step-number">1</span>
+                            <span class="step-text">We'll confirm receipt within 24 hours</span>
+                        </div>
+                        <div class="timeline-step">
+                            <span class="step-number">2</span>
+                            <span class="step-text">3D model creation begins (5-7 days)</span>
+                        </div>
+                        <div class="timeline-step">
+                            <span class="step-number">3</span>
+                            <span class="step-text">NFT minting and delivery</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-support">
+                    <p>Questions? Contact us at <strong>support@dr1v3.com</strong></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+.payment-success {
+    padding: 80px 0;
+    background: rgba(10, 10, 10, 0.95);
+    position: relative;
+}
+
+.success-card {
+    max-width: 800px;
+    margin: 0 auto;
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    padding: 50px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+}
+
+.success-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #30d158, #32d74b, #30d158);
+}
+
+.success-icon {
+    font-size: 80px;
+    margin-bottom: 24px;
+    animation: successPulse 2s ease-in-out infinite;
+}
+
+@keyframes successPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+.success-title {
+    font-size: 48px;
+    font-weight: 900;
+    margin-bottom: 16px;
+    background: linear-gradient(135deg, #30d158 0%, #32d74b 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.success-subtitle {
+    font-size: 20px;
+    color: var(--text-secondary);
+    margin-bottom: 40px;
+}
+
+.instructions-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 40px;
+    text-align: left;
+    margin-top: 32px;
+}
+
+.instructions-card h3 {
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 16px;
+    color: var(--text-primary);
+    text-align: center;
+}
+
+.email-instruction {
+    font-size: 18px;
+    color: var(--text-secondary);
+    text-align: center;
+    margin-bottom: 32px;
+    padding: 20px;
+    background: rgba(102, 126, 234, 0.1);
+    border-radius: 12px;
+    border: 1px solid rgba(102, 126, 234, 0.2);
+}
+
+.email-instruction strong {
+    color: #667eea;
+    font-weight: 700;
+}
+
+.photo-requirements,
+.additional-info {
+    margin: 32px 0;
+    padding: 24px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.photo-requirements h4,
+.additional-info h4,
+.timeline h4 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: var(--text-primary);
+}
+
+.requirements-list,
+.info-list {
+    list-style: none;
+    padding: 0;
+}
+
+.requirements-list li,
+.info-list li {
+    padding: 12px 0;
+    font-size: 16px;
+    color: var(--text-secondary);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.requirements-list li:last-child,
+.info-list li:last-child {
+    border-bottom: none;
+}
+
+.timeline {
+    margin: 32px 0;
+    padding: 24px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.timeline-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.timeline-step {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.step-number {
+    width: 32px;
+    height: 32px;
+    background: var(--primary-gradient);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 14px;
+    flex-shrink: 0;
+}
+
+.step-text {
+    color: var(--text-secondary);
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.contact-support {
+    margin-top: 32px;
+    padding: 20px;
+    background: rgba(102, 126, 234, 0.1);
+    border-radius: 12px;
+    border: 1px solid rgba(102, 126, 234, 0.2);
+    text-align: center;
+}
+
+.contact-support p {
+    color: var(--text-secondary);
+    font-size: 16px;
+    margin: 0;
+}
+
+.contact-support strong {
+    color: #667eea;
+    font-weight: 700;
+}
+
+@media (max-width: 768px) {
+    .success-card {
+        padding: 30px 20px;
+    }
+    
+    .success-title {
+        font-size: 32px;
+    }
+    
+    .success-subtitle {
+        font-size: 16px;
+    }
+    
+    .instructions-card {
+        padding: 24px;
+    }
+    
+    .timeline-steps {
+        gap: 12px;
+    }
+    
+    .timeline-step {
+        flex-direction: column;
+        text-align: center;
+        gap: 8px;
+    }
+}
+</style>
+
+<script>
+// Show success message when payment is completed
+// You can trigger this from Stripe's success callback
+function showPaymentSuccess() {
+    document.getElementById('payment-success').style.display = 'block';
+    document.getElementById('payment-success').scrollIntoView({ 
+        behavior: 'smooth' 
+    });
+}
+
+// Check URL parameters for payment success
+window.addEventListener('load', function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('payment') === 'success') {
+        showPaymentSuccess();
+    }
+});
+</script>
     <!-- Terms of Service Section -->
 <section class="terms" id="terms">
     <div class="container">
