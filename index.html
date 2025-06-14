@@ -970,7 +970,7 @@
             <p class="urgency-text">⚡ <strong>Launch Week Only:</strong> Price returns to $497 after first 50 customers</p>
         </div>
     </section>
-    <!-- Payment Success Message Section -->
+<!-- Payment Success Message Section -->
 <section class="payment-success" id="payment-success" style="display: none;">
     <div class="container">
         <div class="success-card">
@@ -979,54 +979,85 @@
             <p class="success-subtitle">Thank you for your purchase. Here's what you need to do next:</p>
             
             <div class="instructions-card">
-                <h3>📧 Send us your vehicle photos</h3>
+                <h3>You're almost done — please send the following items to:</h3>
                 <p class="email-instruction">
-                    Please email your photos to: <strong>photos@dr1v3.com</strong>
+                    📧 <strong>dr1v3.startup@gmail.com</strong><br>
+                    <span class="subject-line">(subject: "NFT Order – [Your Name]")</span>
                 </p>
                 
-                <div class="photo-requirements">
-                    <h4>Photo Requirements:</h4>
-                    <ul class="requirements-list">
-                        <li>📸 40-60 high-quality photos</li>
-                        <li>🔄 360° coverage - all angles</li>
-                        <li>☀️ Good lighting (natural daylight preferred)</li>
-                        <li>📏 Include close-ups of details</li>
-                        <li>🚗 Interior and exterior shots</li>
-                        <li>📱 Minimum 12MP resolution</li>
-                    </ul>
-                </div>
-                
-                <div class="additional-info">
-                    <h4>Include this information:</h4>
-                    <ul class="info-list">
-                        <li>🆔 Your order confirmation number</li>
-                        <li>🚗 Vehicle make, model, and year</li>
-                        <li>🔢 VIN number (for verification)</li>
-                        <li>📧 Your contact email</li>
-                        <li>🎨 Any special customization requests</li>
-                    </ul>
-                </div>
-                
-                <div class="timeline">
-                    <h4>⏰ What happens next:</h4>
-                    <div class="timeline-steps">
-                        <div class="timeline-step">
-                            <span class="step-number">1</span>
-                            <span class="step-text">We'll confirm receipt within 24 hours</span>
+                <div class="requirements-section">
+                    <h4>✅ Please include:</h4>
+                    
+                    <div class="requirement-item">
+                        <div class="requirement-number">1</div>
+                        <div class="requirement-content">
+                            <h5>40–60 photos of your car</h5>
+                            <ul class="requirement-details">
+                                <li>All angles (front, back, both sides, 45°)</li>
+                                <li>Include interior + top-down if possible</li>
+                                <li>Format: JPG or PNG</li>
+                                <li><strong>Tip:</strong> Take photos during daylight!</li>
+                            </ul>
                         </div>
-                        <div class="timeline-step">
-                            <span class="step-number">2</span>
-                            <span class="step-text">3D model creation begins (5-7 days)</span>
+                    </div>
+                    
+                    <div class="requirement-item">
+                        <div class="requirement-number">2</div>
+                        <div class="requirement-content">
+                            <h5>Your car's VIN number</h5>
+                            <ul class="requirement-details">
+                                <li>Write it in the message or include a photo of the VIN plate</li>
+                            </ul>
                         </div>
-                        <div class="timeline-step">
-                            <span class="step-number">3</span>
-                            <span class="step-text">NFT minting and delivery</span>
+                    </div>
+                    
+                    <div class="requirement-item">
+                        <div class="requirement-number">3</div>
+                        <div class="requirement-content">
+                            <h5>Proof of ownership (choose one):</h5>
+                            <ul class="requirement-details">
+                                <li>A photo of your <strong>registration document</strong></li>
+                                <li>Or a <strong>bill of sale / title</strong> (you can blur personal info)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="requirement-item">
+                        <div class="requirement-number">4</div>
+                        <div class="requirement-content">
+                            <h5>Selfie with a note:</h5>
+                            <ul class="requirement-details">
+                                <li>Hold a paper that says: <strong>"For DR1V3 – [Today's Date]"</strong></li>
+                                <li>Take it next to your car or VIN plate</li>
+                                <li>This confirms the car is truly yours</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="requirement-item">
+                        <div class="requirement-number">5</div>
+                        <div class="requirement-content">
+                            <h5>Your preferred email or wallet address</h5>
+                            <ul class="requirement-details">
+                                <li>We will deliver your NFT there</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
                 
-                <div class="contact-support">
-                    <p>Questions? Contact us at <strong>support@dr1v3.com</strong></p>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <span class="timeline-icon">📦</span>
+                        <span class="timeline-text">Once received, we'll review your files and begin the 3D process</span>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-icon">🎯</span>
+                        <span class="timeline-text">Your NFT will be ready in <strong>3–5 business days</strong></span>
+                    </div>
+                </div>
+                
+                <div class="early-supporter">
+                    <p>Thanks for supporting DR1V3 – you're early 🔥</p>
                 </div>
             </div>
         </div>
@@ -1125,44 +1156,69 @@
     font-weight: 700;
 }
 
-.photo-requirements,
-.additional-info {
+.subject-line {
+    font-size: 14px;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.requirements-section {
     margin: 32px 0;
+}
+
+.requirements-section h4 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    color: var(--text-primary);
+}
+
+.requirement-item {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 24px;
     padding: 24px;
     background: rgba(255, 255, 255, 0.03);
     border-radius: 16px;
     border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.photo-requirements h4,
-.additional-info h4,
-.timeline h4 {
-    font-size: 20px;
+.requirement-number {
+    width: 40px;
+    height: 40px;
+    background: var(--primary-gradient);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-weight: 700;
-    margin-bottom: 16px;
+    font-size: 18px;
+    flex-shrink: 0;
+}
+
+.requirement-content {
+    flex: 1;
+}
+
+.requirement-content h5 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 12px;
     color: var(--text-primary);
 }
 
-.requirements-list,
-.info-list {
+.requirement-details {
     list-style: none;
     padding: 0;
+    margin: 0;
 }
 
-.requirements-list li,
-.info-list li {
-    padding: 12px 0;
-    font-size: 16px;
+.requirement-details li {
+    padding: 6px 0;
+    font-size: 15px;
     color: var(--text-secondary);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.requirements-list li:last-child,
-.info-list li:last-child {
-    border-bottom: none;
+    line-height: 1.5;
 }
 
 .timeline {
@@ -1173,40 +1229,37 @@
     border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.timeline-steps {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-}
-
-.timeline-step {
+.timeline-item {
     display: flex;
     align-items: center;
     gap: 16px;
-    padding: 16px;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 16px 0;
 }
 
-.step-number {
-    width: 32px;
-    height: 32px;
-    background: var(--primary-gradient);
-    color: white;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 700;
-    font-size: 14px;
-    flex-shrink: 0;
+.timeline-icon {
+    font-size: 24px;
 }
 
-.step-text {
+.timeline-text {
     color: var(--text-secondary);
     font-size: 16px;
-    font-weight: 500;
+    line-height: 1.5;
+}
+
+.early-supporter {
+    margin-top: 32px;
+    padding: 20px;
+    background: rgba(102, 126, 234, 0.1);
+    border-radius: 12px;
+    border: 1px solid rgba(102, 126, 234, 0.2);
+    text-align: center;
+}
+
+.early-supporter p {
+    color: var(--text-secondary);
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
 }
 
 .contact-support {
@@ -1246,11 +1299,17 @@
         padding: 24px;
     }
     
-    .timeline-steps {
+    .requirement-item {
+        flex-direction: column;
         gap: 12px;
+        padding: 20px;
     }
     
-    .timeline-step {
+    .requirement-number {
+        align-self: flex-start;
+    }
+    
+    .timeline-item {
         flex-direction: column;
         text-align: center;
         gap: 8px;
